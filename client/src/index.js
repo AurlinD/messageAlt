@@ -14,6 +14,7 @@ const store = createStore(
 );
 
 ReactDOM.render(
+  // wrap App with provider with store as prop FOR REDUX
   <Provider store={store}>
     <App />
   </Provider>,
