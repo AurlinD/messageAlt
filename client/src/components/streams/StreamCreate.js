@@ -28,6 +28,8 @@ class StreamCreate extends React.Component {
 
   // redux for doessnt need preventDefault
   // prop contains the information about the form
+  // used when user successfully submits form
+  // uses action creator helper
   onSubmit = formValues => {
     this.props.createStream(formValues);
   };
@@ -75,6 +77,7 @@ const formWrapped = reduxForm({
   validate: validate
 })(StreamCreate);
 
+// used for server restful conventions
 export default connect(
   null,
   { createStream }
