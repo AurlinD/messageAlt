@@ -15,6 +15,7 @@ class StreamCreate extends React.Component {
   }
   renderInput = ({ input, label, meta }) => {
     // for input to turn red
+    //..input allows input forms to update properly on console for redux forms
     const className = `field ${meta.error && meta.touched ? "error" : ""}`;
     return (
       <div className={className}>
@@ -25,10 +26,15 @@ class StreamCreate extends React.Component {
     );
   };
 
+  // redux for doessnt need preventDefault
+  // prop contains the information about the form
   onSubmit = formValues => {
     this.props.createStream(formValues);
   };
 
+  // input fields for user to type in
+  // additional fields get passed as props such as label
+  // onSubmit redux-form
   render() {
     return (
       <form
@@ -47,6 +53,8 @@ class StreamCreate extends React.Component {
   }
 }
 
+// automatically called when user touches form
+// checks if user typed in valid inputs for title and description
 const validate = formValues => {
   const errors = {};
   if (!formValues.title) {
@@ -60,6 +68,8 @@ const validate = formValues => {
   return errors;
 };
 
+// works just like connect in sending back state changes,
+// but for redux-form
 const formWrapped = reduxForm({
   form: "streamCreate",
   validate: validate

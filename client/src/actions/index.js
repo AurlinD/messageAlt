@@ -1,6 +1,8 @@
 import streams from "../apis/streams";
 import { SIGN_IN, SIGN_OUT } from "./types";
 
+// only call if users successfully signed in/out
+// action creator
 export const signIn = userId => {
   return {
     type: SIGN_IN,

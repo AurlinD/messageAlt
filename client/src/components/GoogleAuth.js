@@ -26,6 +26,7 @@ class GoogleAuth extends React.Component {
     });
   }
   // change in state when signed in/out
+  // isSignedIn is the passed in function
   onAuthChange = isSignedin => {
     if (isSignedin) {
       this.props.signIn(this.auth.currentUser.get().getId());
@@ -68,10 +69,12 @@ class GoogleAuth extends React.Component {
 }
 
 // redux store communicates if user is signed in/out through props function
+// will return null,true,false
 const mapStateToProps = state => {
   return { isSignedIn: state.auth.isSignedIn };
 };
 
+// redux connect everything
 export default connect(
   mapStateToProps,
   { signIn, signOut }
