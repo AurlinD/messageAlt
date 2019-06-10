@@ -1,39 +1,14 @@
 {
   "streams": [
     {
-      "title": "asdasnjk",
-      "description": "asdnkajs",
+      "title": "Aurlin",
+      "description": "Dhillon",
       "id": 1
-    },
-    {
-      "title": "asdasnjk",
-      "description": "asdnkajs",
-      "id": 2
-    },
-    {
-      "title": "asdasnjk",
-      "description": "asdnkajs",
-      "id": 3
-    },
-    {
-      "title": "Aurlin",
-      "description": "Dhillon",
-      "id": 4
-    },
-    {
-      "title": "Aurlin",
-      "description": "Dhillon",
-      "id": 5
-    },
-    {
-      "title": "sd",
-      "description": "sd",
-      "id": 6
     },
     {
       "description": "Here's some stream",
       "title": "Other Stream",
-      "id": 7
+      "id": 2
     }
   ]
 }
