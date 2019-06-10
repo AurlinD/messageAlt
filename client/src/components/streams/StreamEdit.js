@@ -8,9 +8,9 @@ class StreamEdit extends React.Component {
     this.props.fetchStream(this.props.match.params.id);
   }
   render() {
-    // content initially undefined
+    // content is initially undefined THEN updates
     if (!this.props.stream) {
-      return <div>Loading..</div>;
+      return <div>Loading...</div>;
     } else {
       return <div>{this.props.stream.title}</div>;
     }
