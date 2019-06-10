@@ -28,9 +28,11 @@ export const signOut = () => {
 
 // has parameter with all information about stream
 // action creator for creating a stream
-export const createStream = formValues => async dispatch => {
+// get states allows us to reach into redux store and get ID
+export const createStream = formValues => async (dispatch, getState) => {
   // waits for db to send information about stream back
-  const response = await streams.post("/streams", formValues);
+  const { userId } = getState().auth;
+  const response = await streams.post("/streams", { ...formValues, userId });
   // axios return a bunch of different information
   dispatch({ type: CREATE_STREAM, payload: response.data });
 };
