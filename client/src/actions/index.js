@@ -1,4 +1,5 @@
 import streams from "../apis/streams";
+import history from "../history";
 import {
   SIGN_IN,
   SIGN_OUT,
@@ -35,6 +36,11 @@ export const createStream = formValues => async (dispatch, getState) => {
   const response = await streams.post("/streams", { ...formValues, userId });
   // axios return a bunch of different information
   dispatch({ type: CREATE_STREAM, payload: response.data });
+
+  // Do some programmatic navigation to
+  // get the user back to the root route
+  // push navigates the user
+  history.push("/");
 };
 
 export const fetchStreams = () => async dispatch => {
