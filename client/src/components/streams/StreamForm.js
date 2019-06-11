@@ -24,7 +24,7 @@ class StreamForm extends React.Component {
     );
   };
 
-  // redux for doessnt need preventDefault
+  // redux form doesnt need preventDefault
   // prop contains the information about the form
   // used when user successfully submits form
   // uses action creator helper
