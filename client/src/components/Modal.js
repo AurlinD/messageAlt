@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import history from "../history";
 
 const Modal = props => {
   // specific function for modal
@@ -9,10 +8,7 @@ const Modal = props => {
   // onClick triggers function when clicked upon
   // e.stopPropgation stops the propagation up the tree
   return ReactDOM.createPortal(
-    <div
-      onClick={() => history.push("/")}
-      className="ui dimmer modals visible active"
-    >
+    <div onClick={props.onDismiss} className="ui dimmer modals visible active">
       <div
         onClick={e => e.stopPropagation()}
         className="ui standard modal visible active"
