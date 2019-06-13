@@ -78,9 +78,6 @@ export const replyComment = formValues => async (dispatch, getState) => {
 
   // axios return a bunch of different information
   dispatch({ type: REPLY_COMMENT, payload: response.data });
-  console.log(formValues);
-  console.log(dispatch);
-  console.log(getState);
 
   // Do some programmatic navigation to
   // get the user back to the root route
