@@ -4,7 +4,7 @@ import CommentCreate from "./comment/CommentCreate";
 import CommentEdit from "./comment/CommentEdit";
 import CommentDelete from "./comment/CommentDelete";
 import CommentList from "./comment/CommentList";
-import CommentShow from "./comment/CommentShow";
+import CommentReply from "./comment/CommentReply";
 import Header from "./Header";
 import history from "../history";
 
@@ -19,7 +19,7 @@ const App = () => {
           <Route path="/comments/new" exact component={CommentCreate} />
           <Route path="/comments/edit/:id" exact component={CommentEdit} />
           <Route path="/comments/delete/:id" exact component={CommentDelete} />
-          <Route path="/comments/show" exact component={CommentShow} />
+          <Route path="/comments/reply/:id" exact component={CommentReply} />
         </div>
       </Router>
     </div>

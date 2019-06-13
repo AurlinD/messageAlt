@@ -7,7 +7,8 @@ import {
   FETCH_COMMENT,
   FETCH_COMMENTS,
   DELETE_COMMENT,
-  EDIT_COMMENT
+  EDIT_COMMENT,
+  REPLY_COMMENT
 } from "./types";
 
 // only call if users successfully signed in/out
@@ -66,5 +67,23 @@ export const deleteComment = id => async dispatch => {
   await comments.delete(`/comments/${id}`);
 
   dispatch({ type: DELETE_COMMENT, payload: id });
+  history.push("/");
+};
+
+export const replyComment = formValues => async (dispatch, getState) => {
+  // waits for db to send information about comment back
+
+  const { userId } = getState().auth;
+  const response = await comments.post("/comments", { ...formValues, userId });
+
+  // axios return a bunch of different information
+  dispatch({ type: REPLY_COMMENT, payload: response.data });
+  console.log(formValues);
+  console.log(dispatch);
+  console.log(getState);
+
+  // Do some programmatic navigation to
+  // get the user back to the root route
+  // push navigates the user
   history.push("/");
 };

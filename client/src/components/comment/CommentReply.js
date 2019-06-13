@@ -1,15 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
-import { createComment } from "../../actions";
+import { replyComment } from "../../actions";
 import CommentForm from "./CommentForm";
 
-class CommentCreate extends React.Component {
-  // redux for doesnt need preventDefault
+class CommentReply extends React.Component {
+  // redux for doessnt need preventDefault
   // prop contains the information about the form
   // used when user successfully submits form
   // uses action creator helper
   onSubmit = formValues => {
-    this.props.createComment(formValues);
+    this.props.replyComment(formValues);
   };
 
   render() {
@@ -25,5 +25,5 @@ class CommentCreate extends React.Component {
 // used for server restful conventions
 export default connect(
   null,
-  { createComment }
-)(CommentCreate);
+  { replyComment }
+)(CommentReply);

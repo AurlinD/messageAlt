@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchComments } from "../../actions";
+import faker from "faker";
 
 class CommentList extends React.Component {
   componentDidMount() {
@@ -12,19 +13,10 @@ class CommentList extends React.Component {
   renderAdmin(comment) {
     if (comment.userId === this.props.currentUserId) {
       return (
-        <div className="right floated content">
-          <Link
-            to={`/comments/edit/${comment.id}`}
-            className="ui button primary"
-          >
-            Edit
-          </Link>
-          <Link
-            to={`/comments/delete/${comment.id}`}
-            className="ui button negative"
-          >
-            Delete
-          </Link>
+        <div className="reply">
+          <Link to={`/comments/reply/${comment.id}`}>Reply</Link>
+          <Link to={`/comments/edit/${comment.id}`}>Edit</Link>
+          <Link to={`/comments/delete/${comment.id}`}>Delete</Link>
         </div>
       );
     }
@@ -35,12 +27,14 @@ class CommentList extends React.Component {
   renderList() {
     return this.props.comments.map(comment => {
       return (
-        <div className="item" key={comment.id}>
-          {this.renderAdmin(comment)}
-          <i className="large middle aligned icon camera" />
+        <div className="comment" key={comment.id}>
+          <div className="avatar">
+            <img alt="avatar" src={faker.image.avatar()} />
+          </div>
           <div className="content">
-            {comment.title}
-            <div className="description">{comment.description}</div>
+            <div className="author">{comment.title}</div>
+            <div className="text">{comment.description}</div>
+            <div className="actions">{this.renderAdmin(comment)}</div>
           </div>
         </div>
       );
@@ -50,7 +44,7 @@ class CommentList extends React.Component {
   renderCreate() {
     if (this.props.isSignedIn) {
       return (
-        <div style={{ textAlign: "right" }}>
+        <div style={{ textAlign: "left" }}>
           <Link to="/comments/new" className="ui button primary">
             Create Message
           </Link>
@@ -62,8 +56,10 @@ class CommentList extends React.Component {
   render() {
     return (
       <div>
-        <h2>Message Board</h2>
-        <div className="ui celled list">{this.renderList()}</div>
+        <div className="ui comments">
+          <h3 className="ui dividing header">Message Board</h3>
+          {this.renderList()}
+        </div>
         {this.renderCreate()}
       </div>
     );
