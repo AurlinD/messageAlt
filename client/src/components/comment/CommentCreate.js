@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createStream } from "../../actions";
-import StreamForm from "./StreamForm";
+import CommentForm from "./CommentForm";
 
-class StreamCreate extends React.Component {
+class CommentCreate extends React.Component {
   // redux for doessnt need preventDefault
   // prop contains the information about the form
   // used when user successfully submits form
@@ -15,8 +15,8 @@ class StreamCreate extends React.Component {
   render() {
     return (
       <div>
-        <h3>Create a Stream</h3>
-        <StreamForm onSubmit={this.onSubmit} />
+        <h3>Create a Message</h3>
+        <CommentForm onSubmit={this.onSubmit} />
       </div>
     );
   }
@@ -26,4 +26,4 @@ class StreamCreate extends React.Component {
 export default connect(
   null,
   { createStream }
-)(StreamCreate);
+)(CommentCreate);

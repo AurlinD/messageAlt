@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchStream, editStream } from "../../actions";
-import StreamForm from "./StreamForm";
+import CommentForm from "./CommentForm";
 import _ from "lodash";
 
-class StreamEdit extends React.Component {
+class CommentEdit extends React.Component {
   // updates the redux store allowing us to see content
   componentDidMount() {
     this.props.fetchStream(this.props.match.params.id);
@@ -24,8 +24,8 @@ class StreamEdit extends React.Component {
     } else {
       return (
         <div>
-          <h3>Edit a Stream</h3>
-          <StreamForm
+          <h3>Edit a Message</h3>
+          <CommentForm
             initialValues={_.pick(this.props.stream, "title", "description")}
             onSubmit={this.onSubmit}
           />
@@ -44,4 +44,4 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(
   mapStateToProps,
   { fetchStream, editStream }
-)(StreamEdit);
+)(CommentEdit);

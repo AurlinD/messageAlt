@@ -1,10 +1,10 @@
 import React from "react";
 import { Router, Route } from "react-router-dom";
-import StreamCreate from "./streams/StreamCreate";
-import StreamEdit from "./streams/StreamEdit";
-import StreamDelete from "./streams/StreamDelete";
-import StreamList from "./streams/StreamList";
-import StreamShow from "./streams/StreamShow";
+import CommentCreate from "./comment/CommentCreate";
+import CommentEdit from "./comment/CommentEdit";
+import CommentDelete from "./comment/CommentDelete";
+import CommentList from "./comment/CommentList";
+import CommentShow from "./comment/CommentShow";
 import Header from "./Header";
 import history from "../history";
 
@@ -15,11 +15,11 @@ const App = () => {
       <Router history={history}>
         <div>
           <Header />
-          <Route path="/" exact component={StreamList} />
-          <Route path="/streams/new" exact component={StreamCreate} />
-          <Route path="/streams/edit/:id" exact component={StreamEdit} />
-          <Route path="/streams/delete/:id" exact component={StreamDelete} />
-          <Route path="/streams/show" exact component={StreamShow} />
+          <Route path="/" exact component={CommentList} />
+          <Route path="/streams/new" exact component={CommentCreate} />
+          <Route path="/streams/edit/:id" exact component={CommentEdit} />
+          <Route path="/streams/delete/:id" exact component={CommentDelete} />
+          <Route path="/streams/show" exact component={CommentShow} />
         </div>
       </Router>
     </div>

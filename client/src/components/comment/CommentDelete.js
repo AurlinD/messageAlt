@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { fetchStream, deleteStream } from "../../actions";
 import { Link } from "react-router-dom";
 
-class StreamDelete extends React.Component {
+class CommentDelete extends React.Component {
   // remember to access URL ID, check match/param/id
   componentDidMount() {
     this.props.fetchStream(this.props.match.params.id);
@@ -29,9 +29,9 @@ class StreamDelete extends React.Component {
 
   renderContent() {
     if (!this.props.stream) {
-      return "Are you sure you want to delete the stream?";
+      return "Are you sure you want to delete the message?";
     }
-    return `Are you sure you want to delete the stream: ${
+    return `Are you sure you want to delete the message: ${
       this.props.stream.title
     }`;
   }
@@ -39,7 +39,7 @@ class StreamDelete extends React.Component {
   render() {
     return (
       <Modal
-        title="Delete Stream"
+        title="Delete Comment"
         content={this.renderContent()}
         actions={this.renderActions()}
         onDismiss={() => history.push("/")}
@@ -55,4 +55,4 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(
   mapStateToProps,
   { fetchStream, deleteStream }
-)(StreamDelete);
+)(CommentDelete);

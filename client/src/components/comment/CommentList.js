@@ -3,13 +3,12 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchStreams } from "../../actions";
 
-class StreamList extends React.Component {
+class CommentList extends React.Component {
   componentDidMount() {
     this.props.fetchStreams();
   }
 
-  // checks if userID that is logged in is the same as ID of streamer
-  // whom created the stream
+  // checks if userID that is logged in is the same as ID of creator
   renderAdmin(stream) {
     if (stream.userId === this.props.currentUserId) {
       return (
@@ -50,7 +49,7 @@ class StreamList extends React.Component {
       return (
         <div style={{ textAlign: "right" }}>
           <Link to="/streams/new" className="ui button primary">
-            Create Stream
+            Create Message
           </Link>
         </div>
       );
@@ -60,7 +59,7 @@ class StreamList extends React.Component {
   render() {
     return (
       <div>
-        <h2>Streams</h2>
+        <h2>Message Board</h2>
         <div className="ui celled list">{this.renderList()}</div>
         {this.renderCreate()}
       </div>
@@ -81,4 +80,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { fetchStreams }
-)(StreamList);
+)(CommentList);
