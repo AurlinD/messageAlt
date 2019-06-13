@@ -16,10 +16,10 @@ const App = () => {
         <div>
           <Header />
           <Route path="/" exact component={CommentList} />
-          <Route path="/streams/new" exact component={CommentCreate} />
-          <Route path="/streams/edit/:id" exact component={CommentEdit} />
-          <Route path="/streams/delete/:id" exact component={CommentDelete} />
-          <Route path="/streams/show" exact component={CommentShow} />
+          <Route path="/comments/new" exact component={CommentCreate} />
+          <Route path="/comments/edit/:id" exact component={CommentEdit} />
+          <Route path="/comments/delete/:id" exact component={CommentDelete} />
+          <Route path="/comments/show" exact component={CommentShow} />
         </div>
       </Router>
     </div>

@@ -1,13 +1,13 @@
-import streams from "../apis/streams";
+import comments from "../apis/comments";
 import history from "../history";
 import {
   SIGN_IN,
   SIGN_OUT,
-  CREATE_STREAM,
-  FETCH_STREAM,
-  FETCH_STREAMS,
-  DELETE_STREAM,
-  EDIT_STREAM
+  CREATE_COMMENT,
+  FETCH_COMMENT,
+  FETCH_COMMENTS,
+  DELETE_COMMENT,
+  EDIT_COMMENT
 } from "./types";
 
 // only call if users successfully signed in/out
@@ -27,15 +27,15 @@ export const signOut = () => {
 
 //since we know what the response of server is already, we can make action creators for all restful processes
 
-// has parameter with all information about stream
-// action creator for creating a stream
+// has parameter with all information about comment
+// action creator for creating a comment
 // get states allows us to reach into redux store and get ID
-export const createStream = formValues => async (dispatch, getState) => {
-  // waits for db to send information about stream back
+export const createComment = formValues => async (dispatch, getState) => {
+  // waits for db to send information about comment back
   const { userId } = getState().auth;
-  const response = await streams.post("/streams", { ...formValues, userId });
+  const response = await comments.post("/comments", { ...formValues, userId });
   // axios return a bunch of different information
-  dispatch({ type: CREATE_STREAM, payload: response.data });
+  dispatch({ type: CREATE_COMMENT, payload: response.data });
 
   // Do some programmatic navigation to
   // get the user back to the root route
@@ -43,28 +43,28 @@ export const createStream = formValues => async (dispatch, getState) => {
   history.push("/");
 };
 
-export const fetchStreams = () => async dispatch => {
-  const response = await streams.get("/streams");
+export const fetchComments = () => async dispatch => {
+  const response = await comments.get("/comments");
 
-  dispatch({ type: FETCH_STREAMS, payload: response.data });
+  dispatch({ type: FETCH_COMMENTS, payload: response.data });
 };
 
-export const fetchStream = id => async dispatch => {
-  const response = await streams.get(`/streams/${id}`);
+export const fetchComment = id => async dispatch => {
+  const response = await comments.get(`/comments/${id}`);
 
-  dispatch({ type: FETCH_STREAM, payload: response.data });
+  dispatch({ type: FETCH_COMMENT, payload: response.data });
 };
 
-export const editStream = (id, formValues) => async dispatch => {
-  const response = await streams.patch(`/streams/${id}`, formValues);
+export const editComment = (id, formValues) => async dispatch => {
+  const response = await comments.patch(`/comments/${id}`, formValues);
 
-  dispatch({ type: EDIT_STREAM, payload: response.data });
+  dispatch({ type: EDIT_COMMENT, payload: response.data });
   history.push("/");
 };
 
-export const deleteStream = id => async dispatch => {
-  await streams.delete(`/streams/${id}`);
+export const deleteComment = id => async dispatch => {
+  await comments.delete(`/comments/${id}`);
 
-  dispatch({ type: DELETE_STREAM, payload: id });
+  dispatch({ type: DELETE_COMMENT, payload: id });
   history.push("/");
 };

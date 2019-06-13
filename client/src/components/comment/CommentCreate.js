@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { createStream } from "../../actions";
+import { createComment } from "../../actions";
 import CommentForm from "./CommentForm";
 
 class CommentCreate extends React.Component {
@@ -9,7 +9,7 @@ class CommentCreate extends React.Component {
   // used when user successfully submits form
   // uses action creator helper
   onSubmit = formValues => {
-    this.props.createStream(formValues);
+    this.props.createComment(formValues);
   };
 
   render() {
@@ -25,5 +25,5 @@ class CommentCreate extends React.Component {
 // used for server restful conventions
 export default connect(
   null,
-  { createStream }
+  { createComment }
 )(CommentCreate);

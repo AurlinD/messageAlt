@@ -1,23 +1,26 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchStreams } from "../../actions";
+import { fetchComments } from "../../actions";
 
 class CommentList extends React.Component {
   componentDidMount() {
-    this.props.fetchStreams();
+    this.props.fetchComments();
   }
 
   // checks if userID that is logged in is the same as ID of creator
-  renderAdmin(stream) {
-    if (stream.userId === this.props.currentUserId) {
+  renderAdmin(comment) {
+    if (comment.userId === this.props.currentUserId) {
       return (
         <div className="right floated content">
-          <Link to={`/streams/edit/${stream.id}`} className="ui button primary">
+          <Link
+            to={`/comments/edit/${comment.id}`}
+            className="ui button primary"
+          >
             Edit
           </Link>
           <Link
-            to={`/streams/delete/${stream.id}`}
+            to={`/comments/delete/${comment.id}`}
             className="ui button negative"
           >
             Delete
@@ -28,16 +31,16 @@ class CommentList extends React.Component {
   }
 
   // follows standard coventions for returning list of items
-  // for each stream we are returning some jsx
+  // for each comment we are returning some jsx
   renderList() {
-    return this.props.streams.map(stream => {
+    return this.props.comments.map(comment => {
       return (
-        <div className="item" key={stream.id}>
-          {this.renderAdmin(stream)}
+        <div className="item" key={comment.id}>
+          {this.renderAdmin(comment)}
           <i className="large middle aligned icon camera" />
           <div className="content">
-            {stream.title}
-            <div className="description">{stream.description}</div>
+            {comment.title}
+            <div className="description">{comment.description}</div>
           </div>
         </div>
       );
@@ -48,7 +51,7 @@ class CommentList extends React.Component {
     if (this.props.isSignedIn) {
       return (
         <div style={{ textAlign: "right" }}>
-          <Link to="/streams/new" className="ui button primary">
+          <Link to="/comments/new" className="ui button primary">
             Create Message
           </Link>
         </div>
@@ -71,7 +74,7 @@ const mapStateToProps = state => {
   // built in JS function, take object as argument, all values in object gets pulled out into an array.
   // thus keys dissapear, usually want to have array for mapStateToProps
   return {
-    streams: Object.values(state.streams),
+    comments: Object.values(state.comments),
     currentUserId: state.auth.userId,
     isSignedIn: state.auth.isSignedIn
   };
@@ -79,5 +82,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchStreams }
+  { fetchComments }
 )(CommentList);

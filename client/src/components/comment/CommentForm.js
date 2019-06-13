@@ -71,6 +71,6 @@ const validate = formValues => {
 // works just like connect in sending back state changes,
 // but for redux-form
 export default reduxForm({
-  form: "streamForm",
+  form: "commentForm",
   validate: validate
 })(CommentForm);
