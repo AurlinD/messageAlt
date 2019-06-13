@@ -12,6 +12,7 @@ class CommentList extends React.Component {
   // checks if userID that is logged in is the same as ID of creator
   renderAdmin(comment) {
     if (comment.userId === this.props.currentUserId) {
+      console.log(comment);
       return (
         <div className="reply">
           <Link to={`/comments/reply/${comment.id}`}>Reply</Link>
@@ -19,6 +20,11 @@ class CommentList extends React.Component {
           <Link to={`/comments/delete/${comment.id}`}>Delete</Link>
         </div>
       );
+    } else if (
+      comment.userId !== this.props.currentUserId &&
+      this.props.currentUserId !== null
+    ) {
+      return <Link to={`/comments/reply/${comment.id}`}>Reply</Link>;
     }
   }
 
