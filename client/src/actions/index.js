@@ -32,9 +32,15 @@ export const signOut = () => {
 // action creator for creating a comment
 // get states allows us to reach into redux store and get ID
 export const createComment = formValues => async (dispatch, getState) => {
+  console.log(getState);
   // waits for db to send information about comment back
+  const replies = null;
   const { userId } = getState().auth;
-  const response = await comments.post("/comments", { ...formValues, userId });
+  const response = await comments.post("/comments", {
+    ...formValues,
+    userId,
+    replies
+  });
   // axios return a bunch of different information
   dispatch({ type: CREATE_COMMENT, payload: response.data });
 

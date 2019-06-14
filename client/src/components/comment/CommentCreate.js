@@ -9,6 +9,7 @@ class CommentCreate extends React.Component {
   // used when user successfully submits form
   // uses action creator helper
   onSubmit = formValues => {
+    console.log(formValues);
     this.props.createComment(formValues);
   };
 

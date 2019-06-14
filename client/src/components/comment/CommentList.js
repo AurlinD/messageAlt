@@ -12,7 +12,6 @@ class CommentList extends React.Component {
   // checks if userID that is logged in is the same as ID of creator
   renderAdmin(comment) {
     if (comment.userId === this.props.currentUserId) {
-      console.log(comment);
       return (
         <div className="reply">
           <Link to={`/comments/reply/${comment.id}`}>Reply</Link>
@@ -28,6 +27,10 @@ class CommentList extends React.Component {
     }
   }
 
+  renderReply = comment => {
+    console.log(comment);
+  };
+
   // follows standard coventions for returning list of items
   // for each comment we are returning some jsx
   renderList() {
@@ -38,10 +41,11 @@ class CommentList extends React.Component {
             <img alt="avatar" src={faker.image.avatar()} />
           </div>
           <div className="content">
-            <div className="author">{comment.title}</div>
+            <div className="author">{comment.userId}</div>
             <div className="text">{comment.description}</div>
             <div className="actions">{this.renderAdmin(comment)}</div>
           </div>
+          {this.renderReply(comment)}
         </div>
       );
     });
@@ -73,6 +77,7 @@ class CommentList extends React.Component {
 }
 
 const mapStateToProps = state => {
+  //console.log(Object.values(state.comments));
   // built in JS function, take object as argument, all values in object gets pulled out into an array.
   // thus keys dissapear, usually want to have array for mapStateToProps
   return {

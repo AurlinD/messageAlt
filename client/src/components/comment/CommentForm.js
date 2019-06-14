@@ -35,13 +35,14 @@ class CommentForm extends React.Component {
   // input fields for user to type in
   // additional fields get passed as props such as label
   // onSubmit redux-form
+  // <Field name="title" component={this.renderInput} label="Enter Title" />
+  // place above field
   render() {
     return (
       <form
         onSubmit={this.props.handleSubmit(this.onSubmit)}
         className="ui form error"
       >
-        <Field name="title" component={this.renderInput} label="Enter Title" />
         <Field
           name="description"
           component={this.renderInput}
