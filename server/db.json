@@ -1,21 +1,16 @@
 {
   "comments": [
     {
-      "description": "m",
+      "description": "v",
       "userId": "117010749133917405319",
       "replies": [
-        "117010749133917405319",
         {
-          "description": "m"
+          "description": "v",
+          "userId": "117010749133917405319",
+          "parentId": "1"
         }
       ],
       "id": 1
-    },
-    {
-      "description": "cv",
-      "userId": "117010749133917405319",
-      "replies": null,
-      "id": 2
     }
   ]
 }

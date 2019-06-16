@@ -14,7 +14,7 @@ export default (state = {}, action) => {
     // creating new object, adding in all current objects into object
     // mapKeys takes the keys of the objects and it a key value
     case FETCH_COMMENTS:
-      console.log(action.payload);
+      // console.log(action.payload);
       return { ...state, ..._.mapKeys(action.payload, "id") };
     // redux requirement of always returning a new array hence ...state
     // dynamically add a new key value
@@ -28,9 +28,10 @@ export default (state = {}, action) => {
     // payload is the id in delete
     case DELETE_COMMENT:
       return _.omit(state, action.payload);
-    //ERROR IS HERE----------------------------------------------------------------------------------------------------
+    // ERROR IS HERE----------------------------------------------------------------------------------------------------
+    // need to insert unique ID's for replies array
     case REPLY_COMMENT:
-      console.log(action.payload);
+      //console.log(action.payload);
       return { ...state, [action.payload.id]: action.payload };
     default:
       return state;

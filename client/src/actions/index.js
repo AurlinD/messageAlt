@@ -75,10 +75,11 @@ export const deleteComment = id => async dispatch => {
   history.push("/");
 };
 
-const modifyFormValues = (userId, formValues) => {
+const modifyFormValues = (googleId, id, formValues) => {
   return {
-    userId: userId,
-    payload: formValues
+    ...formValues,
+    userId: googleId,
+    parentId: id
   };
 };
 
@@ -90,10 +91,11 @@ export const replyComment = (id, userId, formValues) => async (
   //console.log(getState().auth.userId);
   const potentialResult = await comments.get(`/comments/${id}`);
   if (potentialResult.data.id) {
-    console.log(modifyFormValues(userId, formValues));
+    const updatedValues = modifyFormValues(userId, id, formValues);
+
     const dataComments = potentialResult.data.comments || [];
     const response = await comments.patch(`/comments/${id}`, {
-      replies: [...dataComments, userId, formValues]
+      replies: [...dataComments, updatedValues]
     });
     dispatch({ type: REPLY_COMMENT, payload: response.data });
   }

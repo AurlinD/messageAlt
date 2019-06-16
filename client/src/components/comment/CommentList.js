@@ -27,6 +27,18 @@ class CommentList extends React.Component {
     }
   }
 
+  // checks if userID that is logged in is the same as ID of creator
+  renderReplyAdmin(comment) {
+    if (comment.userId === this.props.currentUserId) {
+      return (
+        <div className="reply">
+          <Link to={`/comments/edit/${comment.id}`}>Edit</Link>
+          <Link to={`/comments/delete/${comment.id}`}>Delete</Link>
+        </div>
+      );
+    }
+  }
+
   renderReply = comment => {
     var count = 0;
     if (comment.replies !== null) {
@@ -39,9 +51,9 @@ class CommentList extends React.Component {
                 <img alt="avatar" src={faker.image.avatar()} />
               </div>
               <div className="content">
-                <div className="author">Jenny Hess</div>
+                <div className="author">{comment.userId}</div>
                 <div className="text">{comment.description}</div>
-                <div className="actions">{this.renderAdmin(comment)}</div>
+                <div className="actions">{this.renderReplyAdmin(comment)}</div>
               </div>
             </div>
           </div>
