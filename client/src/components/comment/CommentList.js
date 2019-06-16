@@ -28,7 +28,26 @@ class CommentList extends React.Component {
   }
 
   renderReply = comment => {
-    console.log(comment);
+    var count = 0;
+    if (comment.replies !== null) {
+      return comment.replies.map(comment => {
+        count++;
+        return (
+          <div className="comments" key={count}>
+            <div className="comment">
+              <div className="avatar">
+                <img alt="avatar" src={faker.image.avatar()} />
+              </div>
+              <div className="content">
+                <div className="author">Jenny Hess</div>
+                <div className="text">{comment.description}</div>
+                <div className="actions">{this.renderAdmin(comment)}</div>
+              </div>
+            </div>
+          </div>
+        );
+      });
+    }
   };
 
   // follows standard coventions for returning list of items

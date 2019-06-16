@@ -32,7 +32,6 @@ export const signOut = () => {
 // action creator for creating a comment
 // get states allows us to reach into redux store and get ID
 export const createComment = formValues => async (dispatch, getState) => {
-  console.log(getState);
   // waits for db to send information about comment back
   const replies = null;
   const { userId } = getState().auth;
@@ -76,14 +75,30 @@ export const deleteComment = id => async dispatch => {
   history.push("/");
 };
 
-export const replyComment = formValues => async (dispatch, getState) => {
-  // waits for db to send information about comment back
+const modifyFormValues = (userId, formValues) => {
+  return {
+    userId: userId,
+    payload: formValues
+  };
+};
 
-  const { userId } = getState().auth;
-  const response = await comments.post("/comments", { ...formValues, userId });
+export const replyComment = (id, userId, formValues) => async (
+  dispatch,
+  getState
+) => {
+  // waits for db to send information about comment back
+  //console.log(getState().auth.userId);
+  const potentialResult = await comments.get(`/comments/${id}`);
+  if (potentialResult.data.id) {
+    console.log(modifyFormValues(userId, formValues));
+    const dataComments = potentialResult.data.comments || [];
+    const response = await comments.patch(`/comments/${id}`, {
+      replies: [...dataComments, userId, formValues]
+    });
+    dispatch({ type: REPLY_COMMENT, payload: response.data });
+  }
 
   // axios return a bunch of different information
-  dispatch({ type: REPLY_COMMENT, payload: response.data });
 
   // Do some programmatic navigation to
   // get the user back to the root route

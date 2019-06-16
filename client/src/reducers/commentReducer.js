@@ -4,7 +4,8 @@ import {
   FETCH_COMMENT,
   FETCH_COMMENTS,
   EDIT_COMMENT,
-  DELETE_COMMENT
+  DELETE_COMMENT,
+  REPLY_COMMENT
 } from "../actions/types";
 
 // need to combine all the action creators
@@ -13,6 +14,7 @@ export default (state = {}, action) => {
     // creating new object, adding in all current objects into object
     // mapKeys takes the keys of the objects and it a key value
     case FETCH_COMMENTS:
+      console.log(action.payload);
       return { ...state, ..._.mapKeys(action.payload, "id") };
     // redux requirement of always returning a new array hence ...state
     // dynamically add a new key value
@@ -26,6 +28,10 @@ export default (state = {}, action) => {
     // payload is the id in delete
     case DELETE_COMMENT:
       return _.omit(state, action.payload);
+    //ERROR IS HERE----------------------------------------------------------------------------------------------------
+    case REPLY_COMMENT:
+      console.log(action.payload);
+      return { ...state, [action.payload.id]: action.payload };
     default:
       return state;
   }
