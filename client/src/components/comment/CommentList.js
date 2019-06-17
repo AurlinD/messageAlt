@@ -41,9 +41,9 @@ class CommentList extends React.Component {
 
   renderReply = comment => {
     var count = 0;
-    if (comment.replies !== null) {
-      return comment.replies.map(comment => {
-        count++;
+    return this.props.comments.map(comment1 => {
+      count++;
+      if (comment.id === parseInt(comment1.parentId)) {
         return (
           <div className="comments" key={count}>
             <div className="comment">
@@ -51,34 +51,40 @@ class CommentList extends React.Component {
                 <img alt="avatar" src={faker.image.avatar()} />
               </div>
               <div className="content">
-                <div className="author">{comment.userId}</div>
-                <div className="text">{comment.description}</div>
-                <div className="actions">{this.renderReplyAdmin(comment)}</div>
+                <div className="author">{comment1.userId}</div>
+                <div className="text">{comment1.description}</div>
+                <div className="actions">{this.renderReplyAdmin(comment1)}</div>
               </div>
             </div>
           </div>
         );
-      });
-    }
+      } else {
+        return;
+      }
+    });
   };
 
   // follows standard coventions for returning list of items
   // for each comment we are returning some jsx
   renderList() {
     return this.props.comments.map(comment => {
-      return (
-        <div className="comment" key={comment.id}>
-          <div className="avatar">
-            <img alt="avatar" src={faker.image.avatar()} />
+      if (comment.parentId === null) {
+        return (
+          <div className="comment" key={comment.id}>
+            <div className="avatar">
+              <img alt="avatar" src={faker.image.avatar()} />
+            </div>
+            <div className="content">
+              <div className="author">{comment.userId}</div>
+              <div className="text">{comment.description}</div>
+              <div className="actions">{this.renderAdmin(comment)}</div>
+            </div>
+            {this.renderReply(comment)}
           </div>
-          <div className="content">
-            <div className="author">{comment.userId}</div>
-            <div className="text">{comment.description}</div>
-            <div className="actions">{this.renderAdmin(comment)}</div>
-          </div>
-          {this.renderReply(comment)}
-        </div>
-      );
+        );
+      } else {
+        return;
+      }
     });
   }
 

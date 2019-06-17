@@ -9,6 +9,7 @@ import {
   DELETE_COMMENT,
   EDIT_COMMENT,
   REPLY_COMMENT
+  //UPDATE_COMMENT
 } from "./types";
 
 // only call if users successfully signed in/out
@@ -33,11 +34,13 @@ export const signOut = () => {
 // get states allows us to reach into redux store and get ID
 export const createComment = formValues => async (dispatch, getState) => {
   // waits for db to send information about comment back
-  const replies = null;
+  const replies = [];
+  const parentId = null;
   const { userId } = getState().auth;
   const response = await comments.post("/comments", {
     ...formValues,
     userId,
+    parentId,
     replies
   });
   // axios return a bunch of different information
@@ -75,35 +78,35 @@ export const deleteComment = id => async dispatch => {
   history.push("/");
 };
 
-const modifyFormValues = (googleId, id, formValues) => {
-  return {
-    ...formValues,
-    userId: googleId,
-    parentId: id
-  };
-};
-
-export const replyComment = (id, userId, formValues) => async (
+export const replyComment = (parent, userId, formValues) => async (
   dispatch,
   getState
 ) => {
-  // waits for db to send information about comment back
-  //console.log(getState().auth.userId);
-  const potentialResult = await comments.get(`/comments/${id}`);
-  if (potentialResult.data.id) {
-    const updatedValues = modifyFormValues(userId, id, formValues);
+  const replies = [];
+  const parentId = parent;
 
-    const dataComments = potentialResult.data.comments || [];
-    const response = await comments.patch(`/comments/${id}`, {
-      replies: [...dataComments, updatedValues]
-    });
-    dispatch({ type: REPLY_COMMENT, payload: response.data });
-  }
+  const response = await comments.post("/comments", {
+    ...formValues,
+    userId,
+    parentId,
+    replies
+  });
+
+  const responseParent = await comments.patch(`/comments/${parent}`);
 
   // axios return a bunch of different information
+  dispatch({ type: REPLY_COMMENT, payload: response.data });
 
-  // Do some programmatic navigation to
-  // get the user back to the root route
-  // push navigates the user
+  // dispatch({
+  //   type: UPDATE_COMMENT,
+  //   payload: responseParent.data,
+  //   reply: response.data
+  // });
+
+  // console.log(responseParent);
+  // responseParent.data.replies.push(response.data.id);
+
+  // dispatch({ type: ADDREPLY, payload: response.data });
+
   history.push("/");
 };

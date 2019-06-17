@@ -6,3 +6,4 @@ export const FETCH_COMMENT = "FETCH_COMMENT";
 export const DELETE_COMMENT = "DELETE_COMMENT";
 export const EDIT_COMMENT = "EDIT_COMMENT";
 export const REPLY_COMMENT = "REPLY_COMMENT";
+//export const UPDATE_COMMENT = "UPDATE_COMMENT";

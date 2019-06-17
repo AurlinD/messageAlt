@@ -5,7 +5,8 @@ import {
   FETCH_COMMENTS,
   EDIT_COMMENT,
   DELETE_COMMENT,
-  REPLY_COMMENT
+  REPLY_COMMENT,
+  UPDATE_COMMENT
 } from "../actions/types";
 
 // need to combine all the action creators
@@ -14,7 +15,6 @@ export default (state = {}, action) => {
     // creating new object, adding in all current objects into object
     // mapKeys takes the keys of the objects and it a key value
     case FETCH_COMMENTS:
-      // console.log(action.payload);
       return { ...state, ..._.mapKeys(action.payload, "id") };
     // redux requirement of always returning a new array hence ...state
     // dynamically add a new key value
@@ -28,11 +28,22 @@ export default (state = {}, action) => {
     // payload is the id in delete
     case DELETE_COMMENT:
       return _.omit(state, action.payload);
-    // ERROR IS HERE----------------------------------------------------------------------------------------------------
     // need to insert unique ID's for replies array
     case REPLY_COMMENT:
       //console.log(action.payload);
       return { ...state, [action.payload.id]: action.payload };
+    // case UPDATE_COMMENT:
+    //   // console.log(action);
+    //   // console.log(state[action.payload.id].replies);
+    //   // console.log(action.payload.id);
+    //   // console.log(action.reply.id);
+    //   return {
+    //     ...state,
+    //     [action.payload.replies]: [
+    //       ...state[action.payload.id].replies,
+    //       action.reply.id
+    //     ]
+    //   };
     default:
       return state;
   }
