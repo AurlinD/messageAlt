@@ -51,7 +51,7 @@ class CommentList extends React.Component {
                 <img alt="avatar" src={faker.image.avatar()} />
               </div>
               <div className="content">
-                <div className="author">{comment1.userId}</div>
+                <div className="author">{comment1.name}</div>
                 <div className="text">{comment1.description}</div>
                 <div className="actions">{this.renderReplyAdmin(comment1)}</div>
               </div>
@@ -59,7 +59,7 @@ class CommentList extends React.Component {
           </div>
         );
       } else {
-        return;
+        return null;
       }
     });
   };
@@ -75,7 +75,7 @@ class CommentList extends React.Component {
               <img alt="avatar" src={faker.image.avatar()} />
             </div>
             <div className="content">
-              <div className="author">{comment.userId}</div>
+              <div className="author">{comment.name}</div>
               <div className="text">{comment.description}</div>
               <div className="actions">{this.renderAdmin(comment)}</div>
             </div>
@@ -83,7 +83,7 @@ class CommentList extends React.Component {
           </div>
         );
       } else {
-        return;
+        return null;
       }
     });
   }

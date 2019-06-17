@@ -4,9 +4,9 @@ import {
   FETCH_COMMENT,
   FETCH_COMMENTS,
   EDIT_COMMENT,
-  DELETE_COMMENT,
-  REPLY_COMMENT,
-  UPDATE_COMMENT
+  DELETE_COMMENT
+  // REPLY_COMMENT,
+  // UPDATE_COMMENTvd
 } from "../actions/types";
 
 // need to combine all the action creators
@@ -29,9 +29,9 @@ export default (state = {}, action) => {
     case DELETE_COMMENT:
       return _.omit(state, action.payload);
     // need to insert unique ID's for replies array
-    case REPLY_COMMENT:
-      //console.log(action.payload);
-      return { ...state, [action.payload.id]: action.payload };
+    // case REPLY_COMMENT:
+    //   //console.log(action.payload);
+    //   return { ...state, [action.payload.id]: action.payload };
     // case UPDATE_COMMENT:
     //   // console.log(action);
     //   // console.log(state[action.payload.id].replies);

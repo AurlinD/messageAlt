@@ -14,10 +14,11 @@ import {
 
 // only call if users successfully signed in/out
 // action creator
-export const signIn = userId => {
+export const signIn = (nameOfLogin, userId) => {
   return {
     type: SIGN_IN,
-    payload: userId
+    payload: userId,
+    name: nameOfLogin
   };
 };
 
@@ -34,14 +35,13 @@ export const signOut = () => {
 // get states allows us to reach into redux store and get ID
 export const createComment = formValues => async (dispatch, getState) => {
   // waits for db to send information about comment back
-  const replies = [];
   const parentId = null;
-  const { userId } = getState().auth;
+  const { userId, name } = getState().auth;
   const response = await comments.post("/comments", {
     ...formValues,
     userId,
     parentId,
-    replies
+    name
   });
   // axios return a bunch of different information
   dispatch({ type: CREATE_COMMENT, payload: response.data });
@@ -78,21 +78,21 @@ export const deleteComment = id => async dispatch => {
   history.push("/");
 };
 
-export const replyComment = (parent, userId, formValues) => async (
+export const replyComment = (parent, formValues) => async (
   dispatch,
   getState
 ) => {
-  const replies = [];
+  const { name, userId } = getState().auth;
   const parentId = parent;
 
   const response = await comments.post("/comments", {
     ...formValues,
     userId,
     parentId,
-    replies
+    name
   });
 
-  const responseParent = await comments.patch(`/comments/${parent}`);
+  //const responseParent = await comments.patch(`/comments/${parent}`);
 
   // axios return a bunch of different information
   dispatch({ type: REPLY_COMMENT, payload: response.data });

@@ -14,11 +14,7 @@ class CommentReply extends React.Component {
   // uses action creator helper
 
   onSubmit = formValues => {
-    this.props.replyComment(
-      this.props.match.params.id,
-      this.props.comment.userId,
-      formValues
-    );
+    this.props.replyComment(this.props.match.params.id, formValues);
   };
 
   render() {
