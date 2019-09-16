@@ -8,7 +8,7 @@ class CommentReply extends React.Component {
     this.props.fetchComment(this.props.match.params.id);
   }
 
-  // redux for doessnt need preventDefault
+  // redux form doessnt need preventDefault
   // prop contains the information about the form
   // used when user successfully submits form
   // uses action creator helper
