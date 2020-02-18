@@ -30,7 +30,7 @@ class GoogleAuth extends React.Component {
   onAuthChange = isSignedin => {
     if (isSignedin) {
       this.props.signIn(
-        this.auth.currentUser.get().w3.ig,
+        this.auth.currentUser.je.Qt.vW,
         this.auth.currentUser.get().getId()
       );
     } else {
@@ -80,7 +80,4 @@ const mapStateToProps = state => {
 };
 
 // redux connect everything
-export default connect(
-  mapStateToProps,
-  { signIn, signOut }
-)(GoogleAuth);
+export default connect(mapStateToProps, { signIn, signOut })(GoogleAuth);
