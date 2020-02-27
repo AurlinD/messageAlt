@@ -15,7 +15,7 @@ A message board in which users can interact with other users.
 
 !["Sign In/out Google Functionality"](docs/Google.png)
 
-!["Main screen functionality"](https://raw.githubusercontent.com/AurlinD/messageAlt/blob/master/docs/Main-Screen.png)
+!["Main screen functionality"](docs/Main-Screen.png)
 
-!["Edit message"](https://raw.githubusercontent.com/AurlinD/messageAlt/blob/master/docs/edit-comment.png)
+!["Edit message"](docs/edit-comment.png)
 
