@@ -25,11 +25,9 @@ A message board in which users can interact with other users.
 
 1. Fork this repository, then clone it.
 2. Install the dependencies using the `npm install` command.
-3. Start the Webpack Development Server using`npm start`. The app will be served at <http://localhost:8000/>.
-4. Go to <http://localhost:8000/> in your browser.
-5. Fork the scheduler-api repository and clone it as well.
-6. Follow the instructions in the README.md of scheduler-api.
-7. Enjoy the full features of the website (Look at the remaining spots for a given day and the available interviewers)
+3. Start the server using `npm start`.
+3. Start the client using `npm start`. The app will be served at <http://localhost:3000/>.
+4. Go to <http://localhost:3000/> in your browser.
 
 ## Run the  server folder
 
