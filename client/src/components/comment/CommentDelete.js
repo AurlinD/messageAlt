@@ -28,12 +28,7 @@ class CommentDelete extends React.Component {
   }
 
   renderContent() {
-    if (!this.props.comment) {
-      return "Are you sure you want to delete the message?";
-    }
-    return `Are you sure you want to delete the message: ${
-      this.props.comment.title
-    }`;
+    return "Are you sure you want to delete the message?";
   }
 
   render() {
@@ -52,7 +47,6 @@ const mapStateToProps = (state, ownProps) => {
   return { comment: state.comments[ownProps.match.params.id] };
 };
 
-export default connect(
-  mapStateToProps,
-  { fetchComment, deleteComment }
-)(CommentDelete);
+export default connect(mapStateToProps, { fetchComment, deleteComment })(
+  CommentDelete
+);
