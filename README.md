@@ -19,3 +19,5 @@ A message board in which users can interact with other users.
 
 !["Edit message"](docs/edit-comment.png)
 
+!["Delete message"](docs/delete-comment.png)
+
